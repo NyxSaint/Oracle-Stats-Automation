@@ -20,11 +20,13 @@ Esta herramienta fue diseñada para resolver escenarios donde el job nativo de O
 Ejecuta el script para crear la bitácora que almacenará el historial de ejecuciones.
 ```sql
 -- Ver script: gbd_bitacora_estat.sql
+```
 
 ### 2. Crear el procedimiento
 Ejecuta el script para crear el procedimiento almacenado que contiene la lógica inteligente que diferencia entre tablas planas y particionadas, priorizando la última partición vigente.
 ```sql
 -- Ver script: spd_refrescar_estadisticas.sql
+```
 
 ### 3. Desactivar el Job Nativo de Oracle
 Para evitar conflictos de bloqueos y competencia por recursos, deshabilitamos la tarea automática:
