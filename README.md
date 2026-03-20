@@ -19,18 +19,18 @@ Esta herramienta fue diseñada para resolver escenarios donde el job nativo de O
 ### 1. Crear la tabla de monitoreo
 Ejecuta el script para crear la bitácora que almacenará el historial de ejecuciones.
 ```sql
--- Ver script: gbd_bitacora_estat.sql
+-- Ver script: 01_gbd_bitacora_estat.sql
 ```
 
 ### 2. Crear el procedimiento
 Ejecuta el script para crear el procedimiento almacenado que contiene la lógica inteligente que diferencia entre tablas planas y particionadas, priorizando la última partición vigente.
 ```sql
--- Ver script: spd_refrescar_estadisticas.sql
+-- Ver script: 02_spd_refrescar_estadisticas.sql
 ```
 
 ### 3. Desactivar el Job Nativo de Oracle
 Para evitar conflictos de bloqueos y competencia por recursos, deshabilitamos la tarea automática:
-
+```sql
 BEGIN
   DBMS_AUTO_TASK_ADMIN.DISABLE(
     client_name => 'auto optimizer stats collection',
@@ -38,10 +38,11 @@ BEGIN
     window_name => NULL);
 END;
 /
+```
 
-### 4.Programar el Nuevo Job (DBMS_SCHEDULER)
+### 4. Programar el Nuevo Job (DBMS_SCHEDULER)
 Configuramos la ejecución automática diaria:
-
+```sql
 BEGIN
   DBMS_SCHEDULER.CREATE_JOB (
     job_name        => 'JOB_STATS_CUSTOM_DAILY',
@@ -53,3 +54,4 @@ BEGIN
     comments        => 'Job personalizado para recoleccion de estadisticas');
 END;
 /
+```
