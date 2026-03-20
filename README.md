@@ -60,3 +60,11 @@ BEGIN
 END;
 /
 ```
+
+## 📊 Monitoreo
+Puedes consultar el estado de tus estadísticas y el rendimiento del job mediante la tabla de bitácora:
+```sql
+select * from sys.gbd_bitacora_estat where grupo=5 order by 1,2 asc;
+```
+
+
