@@ -39,6 +39,11 @@ BEGIN
 END;
 /
 ```
+Verificamos el estado de la tarea.
+```sql
+SELECT client_name, status FROM dba_autotask_client 
+WHERE client_name = 'auto optimizer stats collection';
+```
 
 ### 4. Programar el Nuevo Job (DBMS_SCHEDULER)
 Configuramos la ejecución automática diaria:
